@@ -1,0 +1,182 @@
+﻿\usepackage[german,ngerman]{babel}%
+\usepackage[utf8]{inputenc}%
+\usepackage[T1]{fontenc}%
+\usepackage[babel,german=quotes]{csquotes}%
+%
+%
+%________________________________________________________________________
+%------------------------------------------------------------------------
+%							PassOptions Preparation
+%	Die PassOptions sollten vor der ersten Inklusion des Packages erfolgen
+%	Also auch bevor ein Package von einem anderen eingebunden wird...
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+\PassOptionsToPackage{usenames,dvipsnames,svgnames,x11names,table,prologue}{xcolor}%
+\PassOptionsToPackage{hyphens}{url}%
+\PassOptionsToPackage{nomessages}{fp}%
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%							PassOptions fertig
+%------------------------------------------------------------------------
+%========================================================================
+%
+%
+%
+%________________________________________________________________________
+%------------------------------------------------------------------------
+%							Schriftarten einstellen
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%\usepackage[scaled]{uarial}
+% \usepackage{bookman}
+\usepackage{lmodern}% Lädt Latin Modern Font und setzt es fürs Dokument
+%Ist weniger Pixelig in pdf als Latex Standart
+\usepackage{textcomp}% Lädt Text Companion Font
+%Stellt insbesondere Zeichen zur verfügung, wie
+%baht, bul­let, copy­right, mu­si­cal­note, onequar­ter, sec­tion, and yen
+%------------------------------------------------
+% Standartschriftart festlegen:
+% Mögliche Werte
+% \rmdefault - Roman (Serifen) Font
+% \sfdefault - Sans Serif Font
+% \ttdefault - TypeWriter Font
+\renewcommand*{\familydefault}{\rmdefault}%
+%Die drei Schriftfamilien einstellen:
+\renewcommand*{\rmdefault}{lmr}%
+% Standartmäßig verfügbare Schriftarten:
+% cmr 	Computer Modern Roman (default)
+% lmr 	Latin Modern Roman
+% pbk 	Bookman
+% bch 	Charter
+% pnc 	New Century Schoolbook
+% ppl 	Palatino
+% ptm 	Times
+\renewcommand*{\sfdefault}{lmss}%
+% Standartmäßig verfügbare Schriftarten:
+% cmss 	Computer Modern Sans Serif (default)
+% lmss 	Latin Modern Sans Serif
+% pag 	Avant Garde
+% phv 	Helvetica
+\renewcommand*{\ttdefault}{lmtt}%
+% Standartmäßig verfügbare Schriftarten:
+% cmtt 	Computer Modern Typewriter (default)
+% lmtt 	Latin Modern
+% pcr 	Courier
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%							Schriftarten fertig
+%------------------------------------------------------------------------
+%________________________________________________________________________
+%
+\usepackage{rotating}%
+\usepackage{setspace}%
+\usepackage{framed}%
+\usepackage{float}%
+\usepackage{listings}%
+% \usepackage{amsmath}%
+\usepackage{mathtools}%
+\usepackage{calc}%
+\usepackage{ifthen}%
+\usepackage{enumitem}%
+\usepackage{xcolor}%
+\usepackage{nameref}%
+\usepackage{caption}%
+\usepackage{graphicx}%
+\usepackage{relsize}%
+\usepackage{diagbox}%
+\usepackage{multirow}%
+\usepackage{colortbl}%
+\usepackage{printlen}%
+\usepackage{nicefrac}%
+\usepackage{xparse}%
+% \usepackage{xr}%
+% \externaldocument{AbstractInterfaceProjektMain}%
+% --------------------------------------------------------
+%		Put this in the Header from Docs, where you want
+%		to Import labels form other Docs (e.g. the main)
+% --------------------------------------------------------
+% \usepackage{zref-xr,zref-user}%
+% \zxrsetup{toltxlabel=true,verbose=true}%
+% \zexternaldocument*{AbstractInterfaceMainComplete}%
+% --------------------------------------------------------
+%		End for label Import
+% --------------------------------------------------------
+% See PassOptions for url on Top
+\usepackage[%
+	colorlinks=true,%
+	urlcolor=blue,%
+	linkcolor=black,%
+% 	citecolor=citegreen,%
+	citecolor=black,%
+	filecolor=black,%
+	breaklinks,%
+	]{hyperref}%
+\usepackage{url}%
+\usepackage{nameref}%
+\usepackage{cleveref}%
+%
+%
+%
+% \newcommand{\includestandalonedefaultmode}{buildnew}%
+% \usepackage[%
+% 	group=true,%
+% 	mode=\includestandalonedefaultmode,%
+% % 	subpreambles=true,%
+% % 	build={%
+% % 		latexoptions=-interaction=batchmode -shell-escape -jobname ’\buildjobname’%
+% % 	},%
+% 	]{standalone}%
+%
+%
+%
+\input{./organization/makros.tex}%
+\input{./organization/tikz_makro_preamble.tex}%
+%
+%
+%
+%
+%
+\usepackage{tikz}%
+\usetikzlibrary{calc}%
+\usetikzlibrary{positioning}%
+\usetikzlibrary{shapes}%
+\usetikzlibrary{shapes.geometric}%
+\usetikzlibrary{decorations}%
+\usetikzlibrary{decorations.markings}%
+\usetikzlibrary{decorations.pathmorphing}%
+\usetikzlibrary{shadows}%
+\usetikzlibrary{shadows.blur}%
+\usetikzlibrary{arrows}%
+\usetikzlibrary{arrows.meta}%
+\usetikzlibrary{fadings}%
+\usetikzlibrary{shadings}%
+\usetikzlibrary{matrix}%
+\usetikzlibrary{fit}%
+\usepackage{pgfplots}%
+\pgfplotsset{compat=1.11}%
+%
+%
+%
+%
+%
+% Info:
+% Linienbreiten (line width)(\pgflinewidth):
+% \tikzset{
+%     ultra thin/.style= {line width=0.1pt},
+%     very thin/.style=  {line width=0.2pt},
+%     thin/.style=       {line width=0.4pt},% thin is the default
+%     semithick/.style=  {line width=0.6pt},
+%     thick/.style=      {line width=0.8pt},
+%     very thick/.style= {line width=1.2pt},
+%     ultra thick/.style={line width=1.6pt}
+% }
+%
+%
+% Line-Patern
+% 	\tikzstyle{solid}=                   [dash pattern=]
+% 	\tikzstyle{dotted}=                  [dash pattern=on \pgflinewidth off 2pt]
+% 	\tikzstyle{densely dotted}=          [dash pattern=on \pgflinewidth off 1pt]
+% 	\tikzstyle{loosely dotted}=          [dash pattern=on \pgflinewidth off 4pt]
+% 	\tikzstyle{dashed}=                  [dash pattern=on 3pt off 3pt]
+% 	\tikzstyle{densely dashed}=          [dash pattern=on 3pt off 2pt]
+% 	\tikzstyle{loosely dashed}=          [dash pattern=on 3pt off 6pt]
+% 	\tikzstyle{dashdotted}=              [dash pattern=on 3pt off 2pt on \the\pgflinewidth off 2pt]
+% 	\tikzstyle{densely dashdotted}=      [dash pattern=on 3pt off 1pt on \the\pgflinewidth off 1pt]
+% 	\tikzstyle{loosely dashdotted}=      [dash pattern=on 3pt off 4pt on \the\pgflinewidth off 4pt]
+%

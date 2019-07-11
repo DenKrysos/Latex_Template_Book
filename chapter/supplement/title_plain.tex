@@ -1,0 +1,111 @@
+﻿%
+%
+%	Usage Notes:
+% 	\ifdefempty needs the \usepackage{etoolbox}
+%
+%
+%
+% 
+% 
+% 
+%
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}%
+%
+%
+\begin{titlepage}%
+%
+\begin{center}%
+%
+%
+% Oberer Teil der Titelseite:
+\begin{minipage}{0.4\textwidth}%
+%\includegraphics[height=0.15\textheight]{./bilder/logo.png}\\[1cm]
+\begin{flushleft}%
+% \includegraphics[height=4\baselineskip]{./graphics/core/Logos/Some_Logo.png}%
+% \textsc{\Large Affiliation}\\
+% \textsc{\Large }%
+\end{flushleft}%
+\end{minipage}%
+\hfill%
+\begin{minipage}{0.5\textwidth}%
+\begin{flushright}%
+% {\Large \fontfamily{phv}\fontseries{m}\fontshape{n}\selectfont Affil Part1}\\%
+% {\Large \fontfamily{phv}\fontseries{m}\fontshape{n}\selectfont Affil Part2}\\%
+% {\Large \fontfamily{phv}\fontseries{m}\fontshape{n}\selectfont Affil Part3}\\%
+% {\Large \fontfamily{phv}\fontseries{m}\fontshape{n}\selectfont Affil Part4}%
+\end{flushright}%
+\end{minipage}%
+%
+\vspace{0.07\textheight}%
+%
+\begin{spacing}{1.2}%
+\textsc{\LARGE\TPpublicationType}%
+\end{spacing}%
+%
+\vspace{0.02\textheight}%
+%
+%
+% Title
+\HRule \\[0.2\baselineskip]%
+\begin{spacing}{1}%
+\huge\bfseries%
+\TPtitle%
+\\[0\baselineskip]%
+\end{spacing}%
+\HRule \\[0.08\textheight]%
+%
+% Author and supervisor
+\begin{minipage}[t]{0.47\textwidth}%
+\begin{flushleft} \large%
+{Autor:}\\%
+\ifdefempty{\TPauthorAnrede}%
+	{}%
+	{\TPauthorAnrede\ }%
+\ifdefempty{\TPauthorTitleBefore}%
+	{}%
+	{\TPauthorTitleBefore\ }%
+\TPauthorFirst\ \textsc{\TPauthorLast}%
+\ifdefempty{\TPauthorTitleAfter}%
+	{}%
+	{, \TPauthorTitleAfter}%
+\end{flushleft}%
+\end{minipage}%
+\hfill%
+\begin{minipage}[t]{0.52\textwidth}%
+\begin{flushright} \large%
+% \vspace*{\baselineskip}%
+% {Betreuer:}\\%
+{\ }\\%
+\ifdefempty{\TPsupervisorOneAnrede}%
+	{}%
+	{\TPsupervisorOneAnrede\ }%
+\ifdefempty{\TPsupervisorOneTitleBefore}%
+	{}%
+	{\TPsupervisorOneTitleBefore\ }%
+\TPsupervisorOneFirst\ \textsc{\TPsupervisorOneLast}%
+\ifdefempty{\TPsupervisorOneTitleAfter}%
+	{}%
+	{, \TPsupervisorOneTitleAfter}%
+\\%
+\ifdefempty{\TPsupervisorTwoAnrede}%
+	{}%
+	{\TPsupervisorTwoAnrede\ }%
+\ifdefempty{\TPsupervisorTwoTitleBefore}%
+	{}%
+	{\TPsupervisorTwoTitleBefore\ }%
+\TPsupervisorTwoFirst\ \textsc{\TPsupervisorTwoLast}%
+\ifdefempty{\TPsupervisorTwoTitleAfter}%
+	{}%
+	{, \TPsupervisorTwoTitleAfter}%
+\\%
+\end{flushright}%
+\end{minipage}%
+%
+\vfill%
+%
+% Unterer Teil der Seite
+{\large \TPdate}%
+%
+\end{center}%
+%
+\end{titlepage}%

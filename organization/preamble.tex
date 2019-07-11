@@ -1,0 +1,617 @@
+﻿\documentclass[%
+	fontsize=11pt,%
+	paper=A4,%
+	twoside=true,%
+	titlepage,%
+	openany,%
+	numbers=noenddot,%
+	DIV=calc,%
+	headings=optiontoheadandtoc,% Damit wird im Kopf der optionale Kapitelname verwendet
+% 	draft,%
+]{scrbook}%
+%[2014/09/13]%
+%
+% \usepackage{etex}%
+% \reserveinserts{32}%
+%
+% Das Prozent-Zeichen leitet einen Kommentar ein,
+% es hilft ebenso, im Text Leerzeichen zu unterbinden.
+%
+% fontsize=12pt  Schriftgroesse in 10, 11 oder 12 Punkt
+% a4paper        Papierformat ist hier A4
+% landscape      Querformat wird natürlich unterstützt ;-)
+% parskip        Absatzabstand anstatt Einzüge
+% draft          Der Entwurfsmodus deckt Schwächen auf
+%			e.g. Picutres erscheinen nur als Umrissboxen mit Bildname
+% {scrartcl}     Die Dokumentenklasse book, report, article
+%                oder fürs deutsche scrbook, scrreprt, scrartcl
+%
+% bibtex and biber are external programs that process bibliography information
+% and act (roughly) as the interface between your .bib file and your LaTeX document.
+% -> To prefer: biber
+% natbib and biblatex are LaTeX packages that format citations and
+% bibliographies; natbib works only with bibtex, while biblatex (at the moment)
+% works with both bibtex and biber.)
+%
+%
+%
+% INFO:
+% \paperheight = 
+%				\topmargin +
+%				\headheight +
+%				\headsep +
+%				\textheight +
+%				\footskip +
+%				\footheight +
+%				\ %Some more Space at the bottom
+%
+% \paperwidth = 
+%				\oddsidemargin +
+%				\textwidth +
+%				\marginparsep +
+%				\marginparwidth +
+%				\ %Some more Space at the "left"
+%
+%
+%
+%________________________________________________________________________
+%------------------------------------------------------------------------
+%							PassOptions Preparation
+%	Die PassOptions sollten vor der ersten Inklusion des Packages erfolgen
+%	Also auch bevor ein Package von einem anderen eingebunden wird...
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+\PassOptionsToPackage{usenames,dvipsnames,svgnames,x11names,table,prologue}{xcolor}%
+\PassOptionsToPackage{hyphens}{url}%
+\PassOptionsToPackage{nomessages}{fp}%
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%							PassOptions fertig
+%------------------------------------------------------------------------
+%========================================================================
+%
+%
+%
+%
+% Package Includes - maybe some immediate with options
+%
+%________________________________________________________________________
+%------------------------------------------------------------------------
+%					Basic Language depending Packages
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+% \usepackage[english,german,ngerman]{babel}%
+\usepackage[babelshorthands]{polyglossia}%
+\setmainlanguage[spelling=new]{german}% Synonym: \setdefaultlanguage
+\setotherlanguage[variant=british]{english}
+%\selectlanguage{japanese}%
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% \renewcommand\thesection{\arabic{section}}
+% \renewcommand\thefigure{\arabic{section}.\arabic{figure}}
+\renewcommand\theequation{\arabic{chapter}.\arabic{equation}}%
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% == Note ==  With csquotes.sty, use
+%     \textquote{}, to automatically print correct quotation marks, depending on the set language by polyglossia (or babel)
+%     \enquote{}, for 'nested' quotations
+\usepackage[autostyle=true,german=quotes]{csquotes}% Deutsche Anführungszeichen, german=quotes, guillemets, swiss
+% \usepackage[babel,style=english]{csquotes}%
+% - - - - - - - - - - - - - -
+% == Info, »ALT-Codes« == Some specific quotation signs for hardcoding, using UTF-8 encoding. How-To-Input, if you like.
+%    ALT(left) + [Sequence on NumPad]  (On Windows) (Using ASCII Decimal Index)
+%      "  -    34  (Same as SHIFT + 2, Quotation Mark)
+%      »  -   175  (Guillemets, Chevrons. German: Open. Swiss,French: Close)
+%      «  -   174  (Guillemets, Chevrons. German: Close. Swiss,French: Open)
+%      ›  -  0155
+%      ‹  -  0139
+%      „  -  0132  (low curly doublequote)
+%      “  -  0147  (curly double open quote)
+%      ”  -  0148  (curly double close quote)
+%      ‘  -  0145  (curly single open quote)
+%      ’  -  0146  (curly single close quote)
+%      ‚  -  0130  (curly single quote)
+% - - - - - - - - - - - - - -
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%							END Basic Language
+%------------------------------------------------------------------------
+%________________________________________________________________________
+%
+%
+%
+%
+%
+%
+%________________________________________________________________________
+%------------------------------------------------------------------------
+%							Schriftarten einstellen
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+% 								%##########################
+% 								% Old `fontenc'-Stuff, pre Lua(La)Tex
+% 								%##########################
+% 								%|=======================||||
+% 								% \usepackage[T1]{fontenc}%|| Alt, pre-Lua(La)Tex
+% 								%|=======================||||
+% 								% % %\usepackage[scaled]{uarial}
+% 								% % % \usepackage{bookman}
+% 								%|===================||||
+% 								% \usepackage{lmodern}%|| Lädt Latin Modern Font und setzt es fürs Dokument
+% 								%|===================||||
+% 								% % %Ist weniger Pixelig in pdf als Latex Standart
+% 								%|====================||||
+% 								% \usepackage{textcomp}%|| Lädt Text Companion Font
+% 								%|====================||||
+% 								% % %Stellt insbesondere Zeichen zur verfügung, wie
+% 								% % %baht, bul­let, copy­right, mu­si­cal­note, onequar­ter, sec­tion, and yen
+% 								% % %------------------------------------------------
+% 								% % % Standartschriftart festlegen:
+% 								% % % Mögliche Werte
+% 								% % % \rmdefault - Roman (Serifen) Font
+% 								% % % \sfdefault - Sans Serif Font
+% 								% % % \ttdefault - TypeWriter Font
+% 								%|=========================================||||
+% 								% \renewcommand*{\familydefault}{\rmdefault}%||
+% 								%|=========================================||||
+% 								% % %Die drei Schriftfamilien einstellen:
+% 								%|==============================||||
+% 								% \renewcommand*{\rmdefault}{lmr}%||
+% 								%|==============================||||
+% 								% % % Standartmäßig verfügbare Schriftarten:
+% 								% % % cmr 	Computer Modern Roman (default)
+% 								% % % lmr 	Latin Modern Roman
+% 								% % % pbk 	Bookman
+% 								% % % bch 	Charter
+% 								% % % pnc 	New Century Schoolbook
+% 								% % % ppl 	Palatino
+% 								% % % ptm 	Times
+% 								%|===============================||||
+% 								% \renewcommand*{\sfdefault}{lmss}%||
+% 								%|===============================||||
+% 								% % % Standartmäßig verfügbare Schriftarten:
+% 								% % % cmss 	Computer Modern Sans Serif (default)
+% 								% % % lmss 	Latin Modern Sans Serif
+% 								% % % pag 	Avant Garde
+% 								% % % phv 	Helvetica
+% 								%|===============================||||
+% 								% \renewcommand*{\ttdefault}{lmtt}%||
+% 								%|===============================||||
+%####################################
+% Now: 'fontspec'
+%####################################
+\usepackage{fontspec}%
+% - - - - Fonts - - - 
+%  --  --  The lower, the better i like them
+% \setmainfont{Times New Roman}%
+% \setmainfont{Gungsuh}%
+% \setmainfont{Malgun}%
+% \setmainfont{Batang}%
+% \setmainfont{Meiryo}%
+% \setmainfont{MS Mincho}%
+% \setmainfont{MS Gothic}%
+% \setmainfont{NSimSun}%
+% \setmainfont{SimSun}%
+% \setmainfont{Kozuka Gothic Pro}% From Adobe, Downloadable free at: http://fontpark.net/de/schriftart/kozuka-gothic-pro-b/
+% \setmainfont{Meiryo UI}%
+% \setmainfont{Yu Gothic}%
+%		\setmainfont{Yu Gothic Light}%
+%		\setmainfont{Yu Gothic Medium}%
+% \setmainfont{Yu Gothic UI}%
+%		\setmainfont{Yu Gothic UI Light}%
+%		\setmainfont{Yu Gothic UI Semibold}%
+%		\setmainfont{Yu Gothic UI Semilight}%
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% \setmainfont[ItalicFont={Malgun},Ligatures=TeX]{Yu Gothic UI}% Includes Japanese Support, but not separated.
+% 		Like:	% 	\setmainjfont{Yu Gothic UI} % \mcfamily
+% 		 +		% 	\setsansjfont{Malgun} % \gtfamily
+\setmainfont{Times New Roman}%
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% For Japanese Characters
+\usepackage{luatexja}
+\usepackage{luatexja-fontspec}
+% \setmainjfont{Yu Gothic UI}% \mcfamily
+\setmainjfont{Meiryo UI}% \mcfamily
+\setsansjfont{Malgun}% \gtfamily
+%<-------------------->
+% % % Create a command to format as typewrite with enabled hyphenation
+% % % (Silbentrennung)
+%<-------------------->
+\makeatletter
+\DeclareRobustCommand\ttfamily
+        {\not@math@alphabet\ttfamily\mathtt
+         \fontfamily\ttdefault\selectfont\hyphenchar\font=-1\relax}
+\makeatother
+\DeclareTextFontCommand{\texttthyph}{\ttfamily\hyphenchar\font=45\relax}
+% % % Standartmäßig verfügbare Schriftarten:
+% % % cmtt 	Computer Modern Typewriter (default)
+% % % lmtt 	Latin Modern
+% % % pcr 	Courier
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%							Schriftarten fertig
+%------------------------------------------------------------------------
+%________________________________________________________________________
+%
+%
+%
+%
+%
+%
+%________________________________________________________________________
+%------------------------------------------------------------------------
+%					Some 'Specials', one might want/like
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%________________________________________________________________________
+%------------------------------------------------------------------------
+\KOMAoptions{%
+% 	BCOR=8mm,% Bindeverlust von 8mm am Innenrand einbeziehen
+	DIV=last,%
+}%
+\usepackage[%
+ 	right=1.5cm,% Entspricht im Falle von twoside dem Außenrand
+  	left=1cm,% Entspricht im Falle von twoside dem Innennrand
+ 	top=2.5cm,%
+  	bottom=2.5cm,%
+]{geometry}%manuelles Anpassen der Seitenränder
+\setlength{\marginparwidth}{2.5cm}%Anpassung der Breite der Randnotiz.
+% Zu Beachten, wenn Seiten manuell gewählt wird.
+\usepackage{marginnote}%
+\usepackage{marginfix}%
+\renewcommand*{\marginfont}{\footnotesize}%
+\usepackage{hyphsubst}%
+\usepackage{todonotes}%
+\usepackage{setspace}%
+%
+%
+%
+% See PassOptions for xcolor on Top
+\usepackage{xcolor}%
+\definecolor{citegreen}{RGB}{0,180,0}%
+\definecolor{todonotecol}{RGB}{250,0,0}%
+\usepackage[ngerman]{varioref}%
+%
+%
+%
+%
+%For \DeclareDocumentCommand (bessere Makro-Definition als \newcommand) and so on
+\usepackage{xparse}
+%	Also Necessary to create the DualEntry Makro for Glossaries
+%
+%
+% 'hyperref' is loaded further below. It is to prefer, to load 'hyperref' as late as possible.
+%
+%________________________________________________________________________
+%------------------------------------------------------------------------
+%							Für Kopf und Fußzeilen der Seiten
+%							Alles auf KOMA basierend
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+% \usepackage{scrpage2} %Älter
+\usepackage{scrlayer-scrpage}%
+\PreventPackageFromLoading{fancyhdr}%
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%							Kopf- Fußzeilen fertig
+%------------------------------------------------------------------------
+%________________________________________________________________________
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%							END 'Specials'
+%------------------------------------------------------------------------
+%________________________________________________________________________
+%
+%
+%
+%
+%
+%
+%________________________________________________________________________
+%------------------------------------------------------------------------
+%					TikZ
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+% 	!!! IMPORTANT !!!
+% 	Never forget -shell-escape
+% 	as argument for pdflatex
+% 	when using standalone
+\newcommand{\includestandalonedefaultmode}{buildnew}%
+\newcommand{\tikzFilesPath}{./graphics/tikz/}%
+\usepackage[%
+	group=true,%
+	mode=\includestandalonedefaultmode,%
+% 	subpreambles=true,%
+% 	build={%
+% 		latexoptions=-interaction=batchmode -shell-escape -jobname ’\buildjobname’%
+% 	},%
+	]{standalone}%
+\usepackage{tikz}%
+\usetikzlibrary{calc}%
+\usetikzlibrary{matrix}%
+\usetikzlibrary{fit}%
+\usetikzlibrary{positioning}%
+\usetikzlibrary{shapes}%
+\usetikzlibrary{shapes.geometric}%
+\usetikzlibrary{decorations}%
+\usetikzlibrary{decorations.markings}%
+\usetikzlibrary{decorations.pathmorphing}% 
+\usetikzlibrary{arrows}%
+\usetikzlibrary{arrows.meta}%
+\usepackage{pgfplots}%
+\pgfplotsset{compat=1.11}%
+\usepgfplotslibrary{dateplot}%
+\usetikzlibrary{shadows}%
+\usetikzlibrary{shadows.blur}%
+\usetikzlibrary{fadings}%
+\usetikzlibrary{shadings}%
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%					TikZ End
+%------------------------------------------------------------------------
+%________________________________________________________________________
+%
+%
+%
+%
+%
+%
+%________________________________________________________________________
+%------------------------------------------------------------------------
+%					About Tables
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%
+%%%%\usepackage{tabular}% Latex-Std, just don't use
+%\usepackage{tabular*}% Latex-Std, bit better
+%%%%\usepackage{tabularx}% More comfortable than, 'tabular*', better to use, but no nesting
+\usepackage{tabulary}% Nearly the same as 'tabularx', bit more extensive
+\usepackage{makecell}% http://ctan.org/pkg/makecell
+%------------------------------------------------------------------------------------
+% -- Table recommendation:
+% ---- Use 'tabulary', together with 'makecell' (if necessary)
+% ---- -- Could also use 'tabularx', together with 'makecell', if you like it better...
+% ---- Otherwise maybe 'tabular*'
+%------------------------------------------------------------------------------------
+%
+% Nice for use with e.g. Tables / Legends.
+%     Look into the Folder 'organization/templates' for a Table Example inclusive Legend
+\definecolor{geilesrot}{rgb}{ .753,  0,  0}
+\definecolor{angenehmesorange}{rgb}{ 1,  .753,  0}
+\definecolor{superduftesgruen}{rgb}{ 0,  .69,  .314}
+\definecolor{woDieSonneNieHinscheintSchwarz}{rgb}{ 0,  0,  0}
+%----------------------------------------------------------------
+	\newcommand{\legcrossstraight}{\textcolor{geilesrot}{$\times$}}
+\newcommand{\legcross}{\textbf{\huge\legcrossstraight}}
+	\newcommand{\legbulletstraight}{\textcolor{angenehmesorange}{$\bullet$}}
+\newcommand{\legbullet}{\textbf{\huge\legbulletstraight}}
+	\newcommand{\legcheckstraight}{\textcolor{superduftesgruen}{$\checkmark$}}
+\newcommand{\legcheck}{\textbf{\huge\legcheckstraight}}
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%					Tables End
+%------------------------------------------------------------------------
+%________________________________________________________________________
+%
+%
+%
+%
+%
+%
+%________________________________________________________________________
+%------------------------------------------------------------------------
+%					Various (Basic) Packages
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+
+%- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% *** SUBFIGURE PACKAGES ***  % As Note: subfigure is dead, rather use subfig
+%	Add the option 'subfigure' to 'tocloft' when using both concurrently
+% \ifCLASSOPTIONcompsoc
+   \usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+% \else
+%    \usepackage[caption=false,font=footnotesize]{subfig}
+% \fi
+%- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+%
+\usepackage{framed}%
+\usepackage{float}%
+\usepackage{wrapfig}%
+\usepackage{varwidth}%
+\usepackage[subfigure]{tocloft}%Ermöglicht customization von Inhaltsverzeichnis,
+%					 Abbildungsverzeichnis und Tabellenverzeichnis
+%
+%
+% Für Source-Code Hervorhebung/Formatierung
+% package listings:
+% scheint wohl "minderwertig" zu sein, jedoch tex-only solution
+% \usepackage{tabularx}
+\usepackage{listings}%
+\usepackage{listingsutf8}%
+%\usepackage{minted}%braucht externes Programm
+%
+\usepackage{xkeyval}%Allows to extend Package's Key-Sets with prefixes
+% \usepackage{amsmath}%
+\usepackage{mathtools}% Supersedes and internally loads 'amsmath'
+\usepackage{amssymb}% Loads 'amsfonts'
+\usepackage{ntheorem}%
+\usepackage{calc}%
+\usepackage{ifthen}%
+\usepackage{enumitem}%
+\usepackage{ulem}\normalem%
+% \usepackage{bigfoot}%
+\usepackage{caption}%
+% \usepackage{subcaption}
+\usepackage{graphicx}%
+\usepackage{relsize}%
+\usepackage{scrhack}%
+\usepackage{diagbox}%
+\usepackage{multirow}%
+\usepackage{colortbl}%
+\usepackage{printlen}%
+\usepackage{xspace}%
+\usepackage{units}%contains package 'nicefrac'. Supplies some nice Fraction formatting.
+\usepackage{etoolbox}%
+\usepackage{xstring}%
+\uselengthunit{cm}%
+% \usepackage{ragged2e}%
+% \usepackage[htt]{hyphenat}%
+% \usepackage{import}%
+%-----------------------------------------------------------------------------------
+% Microtype
+\usepackage[%
+	activate={true,%
+	nocompatibility},%
+	final,%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Tracking, Spacing & Kerning werden seit Lua(La)Tex von 'fontspec' verwaltet
+% 	tracking=false,%
+% 	kerning=false,%
+% 	spacing=false,%
+	factor=1100,%
+	stretch=10,%
+	shrink=10%
+]{microtype}%
+% activate={true,nocompatibility} - activate protrusion and expansion
+% final - enable microtype; use "draft" to disable
+% tracking=true, kerning=true, spacing=true - activate these techniques
+% factor=1100 - add 10% to the protrusion amount (default is 1000)
+% stretch=10, shrink=10 - reduce stretchability/shrinkability (default is 20/20)
+%-----------------------------------------------------------------------------------
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%					
+%------------------------------------------------------------------------
+%________________________________________________________________________
+%
+%
+%
+%
+%
+%
+%________________________________________________________________________
+%------------------------------------------------------------------------
+%					additional 'Specials'
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+% See PassOptions for url on Top
+\usepackage[%
+	pdfencoding=auto,%
+	colorlinks=true,%
+	urlcolor=black,%
+	linkcolor=black,%
+% 	citecolor=citegreen,%
+	citecolor=black,%
+	filecolor=magenta,%
+	breaklinks,%
+	]{hyperref}%
+\usepackage{url}%
+\usepackage{nameref}%
+\usepackage{cleveref}%
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%						END 'additional Specials'
+%------------------------------------------------------------------------
+%________________________________________________________________________
+%
+%
+%
+%
+%
+%
+%________________________________________________________________________
+%------------------------------------------------------------------------
+%					Für Abkürzungen, Glossar und weiteres
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+% Glossaries muss NACH hyperref, babel, polyglossia, inputenc and fontenc geladen werden
+% See PassOptions for fp on Top
+% \usepackage[%
+% 	acronym,%
+% % 	nomain,%
+% % 	nonumberlist,%
+% 	nopostdot,%
+% 	seeautonumberlist,%
+% 	shortcuts,%
+% 	section=chapter,%
+% 	toc,%
+% ]{glossaries}%
+% \makeglossaries%
+% \loadglsentries{./supply/glossaries.tex}%
+% \glsdisablehyper% Disables Hyperlinks
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%					glossaries fertig
+%------------------------------------------------------------------------
+%________________________________________________________________________
+%
+%
+%
+%
+%
+%
+%________________________________________________________________________
+%------------------------------------------------------------------------
+%					Additional Packages
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+
+\usepackage{soul}% Viele Texthervorhebungs-Kommandos
+\usepackage{lipsum}%
+\usepackage{boxedminipage}%
+\usepackage{ocgx2}% Package ocgx2 serves as a drop-in replacement for ocg-p, ocg and ocgxpackages.
+%\usepackage{scrextend}% The pack­age makes some fea­tures of the KOMA-Script classes avail­able for other classes, e.g., for the stan­dard classes.
+
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%					
+%------------------------------------------------------------------------
+%________________________________________________________________________
+%
+%
+%
+%
+%
+%
+%________________________________________________________________________
+%------------------------------------------------------------------------
+%                   Für Zitate / Quellen:
+%                   --- Begin biblatex ---
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+% 	\usepackage[%
+% 		backend=biber,%
+% 		style=numeric-comp,%numeric-comp, ieee
+% 		isbn=false,%
+% 	% 	style=apa,%
+% 	% 	apabackref=true,%
+% 		hyperref=true,%
+% 		maxbibnames=99,%
+% 		sorting=none,%
+% 		natbib=true,%
+% 		language=ngerman,%
+% 		defernumbers=true,%
+% 		]{biblatex}%
+% 	% \DeclareLanguageMapping{ngerman}{ngerman-apa}%
+% 	\DeclareLanguageMapping{english}{english-apa}%
+% 	\addbibresource{./supply/literature.bib}%
+% 	% \addbibresource{./supply/literature_secondary.bib}%
+% 	% \addbibresource{./supply/literature_figures.bib}%
+% 	% \addbibresource{./supply/literature_tables.bib}%
+% 	% \addbibresource{./supply/literature_querries.bib}%
+% 	\defbibheading{literature}{\chapnt{Literatur}{chap:literatur}\addtocounter{chapter}{-1}}%
+% 	\defbibheading{literature_secondary}{\chapnt{Zusätzliche Literatur}{chap:literatur_secondary}\addtocounter{chapter}{-1}}%
+% 	\defbibheading{literature_figures}{\chapnt{Abbildungs-Quellen}{chap:abb-quellen}\addtocounter{chapter}{-1}}%
+% 	\defbibheading{literature_tables}{\chapnt{Tabellen-Quellen}{chap:tab-quellen}\addtocounter{chapter}{-1}}%
+%========================================================================================================
+%%========  Some Settings, especially for use with 'style=ieee'
+% \renewcommand*{\bibfont}{\normalfont\footnotesize}
+% \DeclareFieldFormat{sentencecase}{\csname bbx@colon@search\endcsname#1}% Therewith capital letters stay capitals, when using 'style=ieee'
+%%======  One might also want to take a look at 'titlecase', when using 'style=ieee'
+%========================================================================================================
+%      Alternative Methods
+%--------------------------------------------------------------------------------------------------------
+% % % % % % % \DeclareBibliographyCategory{literatur}%
+% % % % % % % \DeclareBibliographyCategory{literatur_abbildung}%
+% % % % % % % \addtocategory{literatur}{Key1,Key2,..}%
+% % % % % % % \addtocategory{literatur_abbildung}{Key1,Key4,..}%
+% % % % % % \bibliography{./literatur/literatur}%
+%========================================================================================================
+% 	\input{./organization/biblatex-customization.tex}%
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%                   --- End biblatex ---
+%------------------------------------------------------------------------
+%________________________________________________________________________
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+\input{./organization/makros.tex}%
+\input{./organization/tikz_makro_preamble.tex}%
+%
+\input{./organization/settings.tex}%
+%
+%
+%

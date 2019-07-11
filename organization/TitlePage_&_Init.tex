@@ -1,0 +1,151 @@
+﻿%
+%================================================================
+%----------------------------------------------------------------
+%      Setup, Typographisch
+%             (Für Präambel. Titel, Verzeichnisse...)
+%================================================================
+%
+\pagestyle{empty}%
+% Hm, settings vlt. doch besser in Präambel
+% \input{./organization/settings.tex}%
+\microtypesetup{activate=false}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Tracking, Spacing & Kerning werden seit Lua(La)Tex von 'fontspec' verwaltet
+% 				% \microtypesetup{tracking=false}%
+% 				% \microtypesetup{kerning=false}%
+% 				% \microtypesetup{spacing=false}%
+%
+%================================================================
+%----------------------------------------------------------------
+%      Title Page \& Schmutztitel
+%================================================================
+%
+\input{./organization/TitlePageData.tex}%
+%\maketitle
+\input{./chapter/supplement/title_plain.tex}%
+%
+% Title Page Rückseite
+%
+\vspace*{\fill}%
+\begin{flushright}%
+\begin{large}%
+\TPauthorFirst\ \TPauthorLast\nl%
+% v0.1 - 02.09.2014\nl
+% v1.0 - 03.11.2014\nl
+% v2.0 - 28.01.2015\nl
+% Final - 28.01.2015\nl
+% aktuell: \today
+\TPdate%
+\end{large}%
+\end{flushright}%
+\clearpage%
+%
+%================================================================
+%----------------------------------------------------------------
+%      Inhaltsverzeichnis
+%================================================================
+%
+\begingroup%
+  \renewcommand*{\chapterpagestyle}{empty}%
+  \pagestyle{plain}%
+  \tableofcontents%
+%   \thispagestyle{empty}%
+  \clearpage%
+%   \listoffigures%
+%   \clearpage%
+%   \listoftables%
+%   \clearpage%
+\endgroup%
+%
+%================================================================
+%----------------------------------------------------------------
+%      Setup, Typographisch
+%             (Für eigentliches Dokument)
+%================================================================
+%
+% \selectlanguage{ngerman}%
+%
+%\sloppy % Würde die Dehnung der Zwischenräume etwas lockerer machen
+%\fussy % Schaltet \sloppy wieder aus. Ist der Latex-Standart
+\microtypesetup{activate=true}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Tracking, Spacing & Kerning werden seit Lua(La)Tex von 'fontspec' verwaltet
+% 					% \microtypesetup{tracking=true}%
+% 					% \microtypesetup{kerning=true}%
+% 					% \microtypesetup{spacing=true}%
+%
+% Beachte: Typographisch erhalten Kapitelseiten keinen Kolumnentitel: plain
+\renewcommand*{\chapterpagestyle}{plain.scrheadings}%
+\pagestyle{scrheadings}%
+\renewcommand*{\partpagestyle}{empty}%
+%
+%
+%
+%
+%
+%________________________________________________________________________
+%------------------------------------------------------------------------
+%		Spacing für
+%					- Equation Environment
+%					- floats
+%					- Some new Lengths & Variables
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+%- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+%		Equation
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+%------------------------------------------------------------------------
+% 	\begin{equation}\begin{split}
+% 	MRes_{K}^{3rd} = \delta_{3rd} + \delta_{K}
+% 	\end{split}\end{equation}
+%------------------------------------------------------------------------
+% Default for 'above' & 'below' Space:
+%		11.0pt plus 3.0pt minus 6.0pt
+% You can check this using (prints it into the Document):
+%		\the\abovedisplayskip
+%		\the\belowdisplayskip
+%------------------------------------------------------------------------
+% The ones with 'short' come in play if the last line immediately before an equation is, well, short.
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+\setlength{\abovedisplayskip}{3pt}
+\setlength{\belowdisplayskip}{3pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+%- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+%		Floats
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\setlength\extrarowheight{1ex}%
+% The Spacing between floats and the surrounding text at top and bottom of the
+% float. The Defaults are somewhat complicated and depend on document type and
+% font-size%
+% \setlength{\intextsep}{\intextsep}%
+% Some more lenghts like this
+%     \textfloatsep — distance between floats on the top or the bottom and the text;
+%     \floatsep — distance between two floats;
+%     \intextsep — distance between floats inserted inside the page text (using h) and the text proper.
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+%- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+%		New Lenghts & Variables
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\newlength\textheighttemp%
+% \setlength{\textheighttemp}{\textheight}%
+\newlength\textwidthtemp%
+% \setlength{\textwidthtemp}{\textwidth}%
+\newlength\textheightstd%
+\setlength{\textheightstd}{\textheight}%
+\newlength\textwidthstd%
+\setlength{\textwidthstd}{\textwidth}%
+\newlength\textheightold%
+\newlength\textwidthold%
+%
+\newlength\tempheight%
+\newlength\tempwidth%
+%\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+%			Spacing End
+%------------------------------------------------------------------------
+%________________________________________________________________________
+%
